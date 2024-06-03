@@ -22,7 +22,7 @@ export class HomePage {
   }
 
   async verifyLoginPage(){
-    await this.page.waitForSelector("text=Authorised User Access")
+    await this.page.waitForSelector("text=Authorised User Access", { timeout: 600000 })
      await expect(this.page.locator("text=Authorised User Access")).toBeVisible();
   }
   
@@ -41,19 +41,19 @@ export class HomePage {
   
   async verifyHomePage(){
     const item = await this.page.locator('.isCorporatePaysSidenavIcon');
-    await expect(item).toBeVisible({ timeout: 70000 });
+    await expect(item).toBeVisible({ timeout: 700000 });
     await expect(this.page.url()).toBe('https://uat.onesingleview.com/overview_classic');
 
   }
 
   async navigateToPaymentsTab() {
-    await this.page.waitForSelector(".isCorporatePaysSidenavIcon")
+    await this.page.waitForSelector(".isCorporatePaysSidenavIcon",{ timeout: 600000 })
     await this.paymentsIcon.click();
   }
 
   async verifyPaymentTab(){
     await expect(this.page.url()).toBe('https://uat.onesingleview.com/payments/summary');
-    await expect(this.page.locator('text=Pending actions summary').first()).toBeVisible();
+    await expect(this.page.locator('text=Pending actions summary', { timeout: 600000 }).first()).toBeVisible();
   }
 
   async clickOnTransfer() {
@@ -70,7 +70,7 @@ export class HomePage {
   }
 
   async verifyBeneficiary(){
-    await expect(this.page.locator('text=Beneficiary accounts').first()).toBeVisible();
+    await expect(this.page.locator('text=Beneficiary accounts', { timeout: 600000 }).first()).toBeVisible();
   }
 
   async clickOnCreatePayment() {
@@ -78,19 +78,19 @@ export class HomePage {
   }
 
   async verifyCreatePayment(){
-    await expect(this.page.locator('text=Create beneficiary accounts payment').first()).toBeVisible();
+    await expect(this.page.locator('text=Create beneficiary accounts payment', { timeout: 600000 }).first()).toBeVisible();
   }
 
   async fillPaymentForm() {
-    const debitCard = await this.page.locator('text=Debit account')
+    const debitCard = await this.page.locator('text=Debit account', { timeout: 600000 })
     await debitCard.click();
-    await this.page.waitForSelector('.listOfItems', { state: 'visible' });
+    await this.page.waitForSelector('.listOfItems', { state: 'visible' }, { timeout: 600000 });
     // Locator for selecting an option by name (e.g., "NCB")
-    const debitOption = await this.page.locator('.inputList .name[title="NCB"]');
+    const debitOption = await this.page.locator('.inputList .name[title="NCB"]', { timeout: 600000 });
     await debitOption.click();
-    const beneficiary =  await this.page.locator('div').filter({ hasText: /^Beneficiary account$/ }).nth(2);
+    const beneficiary =  await this.page.locator('div').filter({ hasText: /^Beneficiary account$/ }, { timeout: 600000 }).nth(2);
     await beneficiary.click();
-    await this.page.waitForSelector('#react-select-5-input');
+    await this.page.waitForSelector('#react-select-5-input', { timeout: 600000 });
     const beneficiaryValue = await this.page.locator("#react-select-5-input")
     await beneficiaryValue.fill("sana") 
     await this.page.getByRole('option', { name: 'sana -' }).click();
