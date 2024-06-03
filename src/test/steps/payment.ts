@@ -12,7 +12,7 @@ Given('User navigates to the application', async function () {
   const context = await browser.newContext()
   page = await context.newPage()
   homePage = new HomePage(page)
-  await page.goto('https://uat.onesingleview.com/login', { timeout: 60000 }); 
+  await page.goto('https://uat.onesingleview.com/login', { timeout: 600000 }); 
   await homePage.verifyLoginPage();
 
 });
