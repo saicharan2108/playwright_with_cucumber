@@ -3,8 +3,8 @@
         "formatOptions": {
             "snippetInterface": "async-await"
         },
-        "timeout":500000,
-       "dryRun": false,
+        "timeout": 500000,
+        "dryRun": false,
         "paths": [
             "src/test/features/"
         ],
@@ -14,8 +14,10 @@
         "requireModule": [
             "ts-node/register"
         ],
-        "format": ["json:./test-results/results.json", "junit:./test-results/results.xml"],
-        "publishQuiet": true,
-        "default":"--publish-quiet"
+        "format": [
+            "json:./test-results/results.json",
+            "junit:./test-results/results.xml"
+        ],
+        "publishQuiet": true
     }
 }
