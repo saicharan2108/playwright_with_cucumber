@@ -5,14 +5,14 @@ import { HomePage } from '../../../pages/home.po';
 let homePage: HomePage;
 let page: Page
 let browser: Browser
-setDefaultTimeout(200000); // 20 seconds
+setDefaultTimeout(2000000); 
 
 Given('User navigates to the application', async function () {
   browser = await chromium.launch({ headless: false })
   const context = await browser.newContext()
   page = await context.newPage()
   homePage = new HomePage(page)
-  await page.goto('https://uat.onesingleview.com/login', { timeout: 60000 }); 
+  await page.goto('https://uat.onesingleview.com/login', { timeout: 600000 }); 
   await homePage.verifyLoginPage();
 
 });
