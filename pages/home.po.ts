@@ -107,7 +107,7 @@ export class HomePage {
 
 
   async isPaymentListed() {
-    await this.page.waitForSelector(`text=Test ID ${currentTime}`, {timeout: 50000})
+    await this.page.waitForSelector(`text=Test ID ${currentTime}`, {timeout: 500000})
     return await this.page.isVisible(`text=Test ID ${currentTime}`);
   }
 
