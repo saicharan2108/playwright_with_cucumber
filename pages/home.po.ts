@@ -89,15 +89,15 @@ export class HomePage {
     await debitOption.click();
     const beneficiary =  await this.page.locator('div').filter({ hasText: /^Beneficiary account$/ }).nth(2);
     await beneficiary.click();
-    await this.page.waitForSelector('#react-select-4-input', {timeout:500000});
-    const beneficiaryValue = await this.page.locator("#react-select-4-input")
+    await this.page.waitForSelector('.name-select__input', {timeout:500000});
+    const beneficiaryValue = await this.page.locator(".name-select__input")
     await beneficiaryValue.fill("sana") 
     await this.page.getByRole('option', { name: 'sana -' }).click();
     await this.page.getByLabel('Amount (SAR)').fill('7');
     await this.page.getByLabel('Amount (SAR)').click();
     await this.page.locator('div:nth-child(5) > .selectOptionFont > .name-select__control > .name-select__value-container > .name-select__input-container').click();
     await this.page.getByRole('option', { name: 'Business:Operating Expenses' }).click();
-    await this.page.locator('textarea[type="text"]').fill(`Test ID ${currentTime}`);
+    await this.page.locator('#description').nth(1).fill(`Test ID ${currentTime}`);
     await this.page.locator('div').filter({ hasText: /^Logout$/ }).locator('span').click();
   }
 
@@ -107,6 +107,7 @@ export class HomePage {
 
 
   async isPaymentListed() {
+    await this.page.waitForSelector(`text=Test ID ${currentTime}`, {timeout: 50000})
     return await this.page.isVisible(`text=Test ID ${currentTime}`);
   }
 
