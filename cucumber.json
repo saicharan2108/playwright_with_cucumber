@@ -3,8 +3,8 @@
         "formatOptions": {
             "snippetInterface": "async-await"
         },
-        "timeout":500000,
-       "dryRun": false,
+        "timeout": 500000,
+        "dryRun": false,
         "paths": [
             "src/test/features/"
         ],
@@ -15,8 +15,9 @@
             "ts-node/register"
         ],
         "format": [
-            "html:test-results/cucumber-report.html"
+            "json:./test-results/results.json",
+            "junit:./test-results/results.xml"
         ],
-        "default":"--publish-quiet"
+        "publishQuiet": true
     }
 }
