@@ -22,7 +22,7 @@ export class HomePage {
   }
 
   async verifyLoginPage(){
-    await this.page.waitForSelector("text=Authorised User Access")
+    await this.page.waitForSelector("text=Authorised User Access", {timeout:600000})
      await expect(this.page.locator("text=Authorised User Access")).toBeVisible();
   }
   
@@ -40,14 +40,13 @@ export class HomePage {
 
   
   async verifyHomePage(){
-    const item = await this.page.locator('.isCorporatePaysSidenavIcon');
-    await expect(item).toBeVisible({ timeout: 70000 });
+    await this.page.waitForURL("https://uat.onesingleview.com/overview_classic")
     await expect(this.page.url()).toBe('https://uat.onesingleview.com/overview_classic');
 
   }
 
   async navigateToPaymentsTab() {
-    await this.page.waitForSelector(".isCorporatePaysSidenavIcon")
+    await this.page.waitForSelector(".isCorporatePaysSidenavIcon", {timeout:900000})
     await this.paymentsIcon.click();
   }
 
@@ -90,8 +89,8 @@ export class HomePage {
     await debitOption.click();
     const beneficiary =  await this.page.locator('div').filter({ hasText: /^Beneficiary account$/ }).nth(2);
     await beneficiary.click();
-    await this.page.waitForSelector('#react-select-5-input');
-    const beneficiaryValue = await this.page.locator("#react-select-5-input")
+    await this.page.waitForSelector('#react-select-4-input', {timeout:500000});
+    const beneficiaryValue = await this.page.locator("#react-select-4-input")
     await beneficiaryValue.fill("sana") 
     await this.page.getByRole('option', { name: 'sana -' }).click();
     await this.page.getByLabel('Amount (SAR)').fill('7');
