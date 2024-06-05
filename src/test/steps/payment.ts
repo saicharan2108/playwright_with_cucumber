@@ -8,7 +8,7 @@ let browser: Browser
 setDefaultTimeout(2000000); // 20 seconds
 
 Given('User navigates to the application', async function () {
-  browser = await chromium.launch({ headless: false })
+  browser = await chromium.launch({ headless: true })
   const context = await browser.newContext()
   page = await context.newPage()
   homePage = new HomePage(page)
