@@ -13,6 +13,7 @@
   "scripts": {
     "test": "cucumber-js test",
     "test1": "PLAYWRIGHT_JUNIT_OUTPUT_NAME=xray-report.xml npx playwright test --browser=chromium"
+    
   },
   "author": "Charan",
   "license": "ISC",
